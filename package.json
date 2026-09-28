@@ -1,0 +1,32 @@
+{
+  "name": "agent-builder",
+  "version": "0.1.0",
+  "description": "Git 仓库同步到打包环境的桌面工具",
+  "main": "./out/main/index.js",
+  "author": "agent-builder",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "kill-dev": "node -e \"try{require('child_process').execSync('taskkill /F /IM electron.exe /T',{stdio:'ignore'})}catch(e){}\""
+  },
+  "dependencies": {
+    "ssh2": "^1.16.0",
+    "tar": "^7.5.22"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@types/ssh2": "^1.15.4",
+    "@types/tar": "^6.1.13",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^34.3.0",
+    "electron-vite": "^3.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0"
+  }
+}
