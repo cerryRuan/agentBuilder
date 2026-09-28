@@ -1,6 +1,6 @@
 {
   "name": "agent-builder",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Git 仓库同步到打包环境的桌面工具",
   "main": "./out/main/index.js",
   "author": "agent-builder",

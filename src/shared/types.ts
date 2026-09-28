@@ -64,10 +64,10 @@ export interface UiPreferences {
 }
 
 export const THEME_LABELS: Record<AppTheme, string> = {
-  'deep-blue': '深蓝（默认，略亮）',
-  midnight: '午夜蓝（更深）',
-  ocean: '海青蓝（再亮一点）',
-  light: '浅色（明亮）'
+  ocean: '海青蓝（默认）',
+  'deep-blue': '深蓝科技',
+  midnight: '午夜蓝',
+  light: '浅色'
 }
 
 /** Windows titleBarOverlay 颜色（须与 CSS --panel / --bg 对齐） */
@@ -76,27 +76,27 @@ export const THEME_TITLEBAR: Record<
   { overlay: string; symbol: string; background: string; native: 'light' | 'dark' }
 > = {
   'deep-blue': {
-    overlay: '#1e2d40',
-    symbol: '#eef3fa',
-    background: '#152230',
+    overlay: '#162436',
+    symbol: '#eef5ff',
+    background: '#0b1524',
     native: 'dark'
   },
   midnight: {
-    overlay: '#1a222c',
+    overlay: '#121822',
     symbol: '#e7eef7',
-    background: '#0f1419',
+    background: '#080c12',
     native: 'dark'
   },
   ocean: {
-    overlay: '#243a58',
-    symbol: '#f2f6fc',
-    background: '#1a2b45',
+    overlay: '#1c324e',
+    symbol: '#f2f7fc',
+    background: '#10233c',
     native: 'dark'
   },
   light: {
     overlay: '#ffffff',
-    symbol: '#1c2b3d',
-    background: '#eef2f8',
+    symbol: '#1a2b3f',
+    background: '#eef3f9',
     native: 'light'
   }
 }
@@ -195,7 +195,7 @@ export const DEFAULT_CONFIG: AppConfig = {
   repos: [],
   mappings: [],
   ui: {
-    theme: 'deep-blue'
+    theme: 'ocean'
   }
 }
 

@@ -16,7 +16,7 @@ export function setMainWindowGetter(fn: () => BrowserWindow | null): void {
 
 export function applyWindowTheme(theme: string): boolean {
   const win = getMainWindow()
-  const key = (theme in THEME_TITLEBAR ? theme : 'deep-blue') as AppTheme
+  const key = (theme in THEME_TITLEBAR ? theme : 'ocean') as AppTheme
   const palette = THEME_TITLEBAR[key]
 
   nativeTheme.themeSource = palette.native

@@ -25,10 +25,10 @@ function resolveAppIcon(): string | undefined {
 
 function resolveTheme(): AppTheme {
   try {
-    return (loadConfig().ui?.theme || 'deep-blue') as AppTheme
+    return (loadConfig().ui?.theme || 'ocean') as AppTheme
   } catch (err) {
     console.error('[createWindow] loadConfig failed, fallback theme', err)
-    return 'deep-blue'
+    return 'ocean'
   }
 }
 
@@ -36,7 +36,7 @@ function createWindow(): void {
   Menu.setApplicationMenu(null)
 
   const savedTheme = resolveTheme()
-  const palette = THEME_TITLEBAR[savedTheme] || THEME_TITLEBAR['deep-blue']
+  const palette = THEME_TITLEBAR[savedTheme] || THEME_TITLEBAR.ocean
   const iconPath = resolveAppIcon()
 
   mainWindow = new BrowserWindow({

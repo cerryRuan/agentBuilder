@@ -7,7 +7,7 @@ interface Props {
   onSave: (config: AppConfig) => Promise<void>
 }
 
-const THEMES: AppTheme[] = ['deep-blue', 'midnight', 'ocean', 'light']
+const THEMES: AppTheme[] = ['ocean', 'deep-blue', 'midnight', 'light']
 
 export default function SystemPage({ config, onSave }: Props): React.JSX.Element {
   const [theme, setTheme] = useState<AppTheme>(config.ui?.theme || 'deep-blue')
