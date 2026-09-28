@@ -10,6 +10,7 @@
 - **发布**：
   - **仅上传**：本机拉分支 → 覆盖远程目录
   - **上传并构建部署**：上传后在服务器执行 `build-*.sh`，再 `docker compose build/up` 对应服务
+- **服务部署**：从打包机传镜像 tar 到现场机；勾选 Python 时同步 `data/python/code`
 - **历史**：最近任务与日志
 
 上传时默认排除：`.git`、`node_modules`、`dist`、`target`、`.venv` 等。
