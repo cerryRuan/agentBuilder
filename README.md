@@ -38,7 +38,7 @@ npm run dev
 npm run dist
 ```
 
-产物在 `release/`：`Agent Builder-1.0.0-Setup.exe`。
+会先清空 `release/`，再构建并打包。产物：`Agent Builder-1.0.0-Setup.exe`。
 
 仅生成未安装的目录版（调试用）：
 

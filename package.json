@@ -10,8 +10,9 @@
     "build": "electron-vite build",
     "preview": "electron-vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
-    "dist": "npm run build && electron-builder --win",
-    "dist:dir": "npm run build && electron-builder --win --dir",
+    "clean:release": "node -e \"require('fs').rmSync('release',{recursive:true,force:true})\"",
+    "dist": "npm run clean:release && npm run build && electron-builder --win",
+    "dist:dir": "npm run clean:release && npm run build && electron-builder --win --dir",
     "kill-dev": "node -e \"try{require('child_process').execSync('taskkill /F /IM electron.exe /T',{stdio:'ignore'})}catch(e){}\""
   },
   "dependencies": {
