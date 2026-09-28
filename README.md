@@ -32,6 +32,20 @@ npm install
 npm run dev
 ```
 
+## 打包 Windows 安装包
+
+```bash
+npm run dist
+```
+
+产物在 `release/`：`Agent Builder-0.1.0-Setup.exe`。
+
+仅生成未安装的目录版（调试用）：
+
+```bash
+npm run dist:dir
+```
+
 ## 推荐配置顺序
 
 1. **Git 认证**  

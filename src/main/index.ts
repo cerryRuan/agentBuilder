@@ -1,10 +1,27 @@
-import { app, shell, BrowserWindow, Menu } from 'electron'
+import { app, shell, BrowserWindow, Menu, nativeImage } from 'electron'
+import { existsSync } from 'fs'
 import { join } from 'path'
 import { applyWindowTheme, registerIpc, setMainWindowGetter } from './ipc'
 import { loadConfig } from './store'
 import { THEME_TITLEBAR, type AppTheme } from '../shared/types'
 
 let mainWindow: BrowserWindow | null = null
+
+function resolveAppIcon(): string | undefined {
+  const packaged = [
+    join(process.resourcesPath, 'icon.ico'),
+    join(process.resourcesPath, 'icon.png')
+  ]
+  // electron-vite: out/main → ../../resources
+  const dev = [
+    join(__dirname, '../../resources/icon.ico'),
+    join(__dirname, '../../resources/icon.png')
+  ]
+  for (const p of app.isPackaged ? packaged : dev) {
+    if (existsSync(p)) return p
+  }
+  return undefined
+}
 
 function resolveTheme(): AppTheme {
   try {
@@ -20,6 +37,7 @@ function createWindow(): void {
 
   const savedTheme = resolveTheme()
   const palette = THEME_TITLEBAR[savedTheme] || THEME_TITLEBAR['deep-blue']
+  const iconPath = resolveAppIcon()
 
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -28,6 +46,7 @@ function createWindow(): void {
     minHeight: 680,
     show: false,
     title: 'Agent Builder',
+    ...(iconPath ? { icon: iconPath } : {}),
     backgroundColor: palette.background,
     autoHideMenuBar: true,
     titleBarStyle: 'hidden',
@@ -44,6 +63,13 @@ function createWindow(): void {
     }
   })
 
+  if (iconPath) {
+    try {
+      mainWindow.setIcon(nativeImage.createFromPath(iconPath))
+    } catch (err) {
+      console.error('[createWindow] setIcon failed', err)
+    }
+  }
   mainWindow.setMenuBarVisibility(false)
 
   let revealed = false
@@ -115,6 +141,10 @@ if (!gotLock) {
   })
 
   app.whenReady().then(() => {
+    // Windows 任务栏分组：避免和默认 Electron 进程挤在一起
+    if (process.platform === 'win32') {
+      app.setAppUserModelId('com.supcon.agent-builder')
+    }
     app.setName('Agent Builder')
     registerIpc()
     setMainWindowGetter(() => mainWindow)
