@@ -11,6 +11,7 @@ import SystemPage from './pages/SystemPage'
 import GuidePage from './pages/GuidePage'
 import ServiceDeployPage from './pages/ServiceDeployPage'
 import { TaskSessionProvider, useTaskSession } from './task-session'
+import appIcon from './assets/app-icon.png'
 
 type Tab =
   | 'publish'
@@ -125,8 +126,8 @@ function NavGlyph({ icon }: { icon: NavIcon }): React.JSX.Element {
     case 'history':
       return (
         <svg {...common}>
-          <path d="M4 12a8 8 0 118-8" />
-          <path d="M4 4v5h5M12 8v4l3 2" />
+          <rect x="5" y="4" width="14" height="16" rx="2" />
+          <path d="M9 9h6M9 13h6M9 17h4" />
         </svg>
       )
     case 'gear':
@@ -191,7 +192,7 @@ function AppShell(): React.JSX.Element {
   return (
     <>
       <div className="titlebar-drag">
-        <span className="titlebar-mark" aria-hidden />
+        <img className="titlebar-mark" src={appIcon} alt="" width={18} height={18} draggable={false} />
         <strong>Agent Builder</strong>
         <span className="titlebar-sub">打包同步工具</span>
       </div>

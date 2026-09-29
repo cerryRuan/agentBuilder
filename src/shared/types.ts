@@ -83,7 +83,7 @@ export const THEME_TITLEBAR: Record<
   },
   midnight: {
     overlay: '#121822',
-    symbol: '#e7eef7',
+    symbol: '#f0f5fb',
     background: '#080c12',
     native: 'dark'
   },

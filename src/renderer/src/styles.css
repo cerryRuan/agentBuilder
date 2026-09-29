@@ -68,8 +68,8 @@
   --panel-2: #1a2230;
   --border: rgba(80, 140, 220, 0.16);
   --border-strong: rgba(80, 140, 220, 0.38);
-  --text: #e7eef7;
-  --muted: #8494a8;
+  --text: #f0f5fb;
+  --muted: #93a3b8;
   --accent: #4da3ff;
   --accent-2: #378ef0;
   --accent-soft: rgba(77, 163, 255, 0.14);
@@ -184,7 +184,8 @@ textarea {
   left: 0;
   right: 0;
   height: var(--titlebar-h);
-  background: linear-gradient(90deg, var(--panel-solid) 0%, color-mix(in srgb, var(--panel-solid) 88%, var(--accent) 12%) 100%);
+  /* 须与 Windows titleBarOverlay.color（THEME_TITLEBAR.overlay / --panel-solid）一致，避免右上角系统按钮底色断层 */
+  background: var(--panel-solid);
   border-bottom: none;
   z-index: 100;
   display: flex;
@@ -212,13 +213,14 @@ textarea {
 }
 
 .titlebar-drag .titlebar-mark {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   border-radius: 4px;
-  background:
-    linear-gradient(135deg, var(--accent) 0%, #7a9cff 100%);
-  box-shadow: 0 0 10px var(--accent-glow);
+  object-fit: cover;
   flex: 0 0 auto;
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .titlebar-drag strong {
