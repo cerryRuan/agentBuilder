@@ -32,18 +32,38 @@ npm install
 npm run dev
 ```
 
-## 打包 Windows 安装包
+## 打包
+
+原生模块（`ssh2` → `cpu-features`）需在**目标平台本机**编译，不能跨平台打包。
+
+### macOS（本机 Apple Silicon）
 
 ```bash
+npm run dist:mac
+# 或
 npm run dist
 ```
 
-会先清空 `release/`，再构建并打包。产物：`Agent Builder-1.0.0-Setup.exe`。
+产物：`release/Agent Builder-1.0.0-arm64.dmg`（未签名，本地安装需在「系统设置 → 隐私与安全性」中允许）。
 
-仅生成未安装的目录版（调试用）：
+仅生成 `.app` 目录（调试用）：
 
 ```bash
-npm run dist:dir
+npm run dist:mac:dir
+```
+
+### Windows（需在 Windows 机器上执行）
+
+```bash
+npm run dist:win
+```
+
+产物：`release/Agent Builder-1.0.0-Setup.exe`。
+
+仅生成未安装的目录版：
+
+```bash
+npm run dist:win:dir
 ```
 
 ## 推荐配置顺序

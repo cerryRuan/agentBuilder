@@ -11,8 +11,11 @@
     "preview": "electron-vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
     "clean:release": "node -e \"require('fs').rmSync('release',{recursive:true,force:true})\"",
-    "dist": "npm run clean:release && npm run build && electron-builder --win",
-    "dist:dir": "npm run clean:release && npm run build && electron-builder --win --dir",
+    "dist": "npm run dist:mac",
+    "dist:mac": "npm run clean:release && npm run build && electron-builder --mac",
+    "dist:mac:dir": "npm run clean:release && npm run build && electron-builder --mac --dir",
+    "dist:win": "npm run clean:release && npm run build && electron-builder --win",
+    "dist:win:dir": "npm run clean:release && npm run build && electron-builder --win --dir",
     "kill-dev": "node -e \"try{require('child_process').execSync('taskkill /F /IM electron.exe /T',{stdio:'ignore'})}catch(e){}\""
   },
   "dependencies": {
@@ -54,6 +57,36 @@
         "to": "icon.png"
       }
     ],
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "resources/icon-512.png",
+      "category": "public.app-category.developer-tools",
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "identity": null,
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
     "win": {
       "target": [
         {
